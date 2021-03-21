@@ -5,10 +5,12 @@
   "author": "Somebuddy77",
   "license": "MIT",
   "scripts": {
-    "hw01:task01": "yarn run build:ts && node dist/homework01/task01.js",
+    "hw01:task01": "yarn run build && nodemon dist/homework01/task01.js",
+    "hw01:task02-by-line": "yarn run build && cp -R src/homework01/csv dist/homework01 && nodemon dist/homework01/task02-by-line.js",
+    "hw01:task02-streams": "yarn run build && cp -R src/homework01/csv dist/homework01 && nodemon dist/homework01/task02-streams.js",
     "start": "yarn run serve",
-    "serve": "node dist/app.js",
-    "build": "yarn run build:ts",
+    "serve": "nodemon dist/app.js",
+    "build": "rm -rf ./dist && yarn run build:ts",
     "build:ts": "tsc",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,ESlint\" -c \"cyan.bold,green.bold,purple.bold\" \"yarn run watch:ts\" \"yarn run watch:lint\"",
     "watch:ts": "tsc -w",
@@ -17,8 +19,8 @@
     "lint:fix": "yarn run eslint --fix"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@types/node": "^14.14.35",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "chokidar": "^3.5.1",
     "chokidar-cli": "^2.1.0",
@@ -26,6 +28,10 @@
     "eslint": "^7.22.0",
     "eslint-plugin-jsdoc": "^32.3.0",
     "eslint-plugin-no-null": "^1.0.2",
+    "nodemon": "^2.0.7",
     "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10"
   }
 }
