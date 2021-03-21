@@ -5,6 +5,7 @@
   "author": "Somebuddy77",
   "license": "MIT",
   "scripts": {
+    "hw01:task01": "yarn run build:ts && node dist/homework01/task01.js",
     "start": "yarn run serve",
     "serve": "node dist/app.js",
     "build": "yarn run build:ts",
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@types/node": "^14.14.35",
     "@typescript-eslint/parser": "^4.18.0",
     "chokidar": "^3.5.1",
     "chokidar-cli": "^2.1.0",
