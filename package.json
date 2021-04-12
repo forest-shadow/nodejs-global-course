@@ -10,7 +10,7 @@
     "hw01:task02-streams": "yarn run build && cp -R src/homework01/csv dist/homework01 && nodemon dist/homework01/task02-streams.js",
     "hw02": "yarn run build && nodemon dist/homework02/app.js",
     "start": "yarn run serve",
-    "serve": "nodemon dist/app.js",
+    "serve": "nodemon dist/homework02/app.js",
     "build": "rm -rf ./dist && yarn run build:ts",
     "build:ts": "tsc",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,ESlint\" -c \"cyan.bold,green.bold,purple.bold\" \"yarn run watch:ts\" \"yarn run watch:lint\"",

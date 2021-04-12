@@ -1,4 +1,7 @@
 import express from 'express'
+import { dbConnect } from './dbConnect'
+
+const { userModel } = dbConnect()
 
 const PORT = 4000
 
