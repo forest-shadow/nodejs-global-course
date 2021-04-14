@@ -27,7 +27,10 @@ module.exports = {
         }
       }
     ],
-    '@typescript-eslint/naming-convention': 'error',
+    '@typescript-eslint/naming-convention': [
+      'error',
+      { selector: 'default', format: ['camelCase', 'PascalCase', 'UPPER_CASE'] }
+    ],
     '@typescript-eslint/prefer-namespace-keyword': 'error',
     '@typescript-eslint/quotes': [
       'error',
