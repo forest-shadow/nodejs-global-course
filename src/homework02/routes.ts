@@ -1,10 +1,12 @@
 const API_BASE = '/api'
 
-const USERS = '/users'
+const USER = '/user'
+const USER_BASE = API_BASE + USER
 
-// TODO: fix eslint `conventions` error
 export default {
-  USERS: {
-    BASE: API_BASE + USERS,
+  USER: {
+    BASE: USER_BASE,
+    BY_ID: USER_BASE + '/:id',
+    SUGGEST: USER_BASE + '/suggest'
   }
 }

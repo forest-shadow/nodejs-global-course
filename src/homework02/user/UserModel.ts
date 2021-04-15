@@ -1,5 +1,5 @@
 import { UserService } from './UserService'
-import { IUser } from './types'
+import { IUser } from './user.types'
 
 export class UserModel {
   db: UserService
@@ -22,8 +22,8 @@ export class UserModel {
     email,
     age,
     password,
-  }: IUser): void {
-    this.db.addUserQuery({
+  }: IUser): IUser {
+    return this.db.addUserQuery({
       age,
       firstName,
       lastName,
@@ -33,18 +33,18 @@ export class UserModel {
     })
   }
 
-  updateUser(updatedUser: IUser): void {
-    this.db.updateUserQuery(updatedUser)
+  updateUser(updatedUser: IUser): IUser {
+    return this.db.updateUserQuery(updatedUser)
   }
 
-  getAutoSuggestUsers(loginSubstring: string, limit: number) {
+  getAutoSuggestUsers(emailSubstring: string, limit: number): IUser[] {
     const users = this.getUsers()
     return users.filter(
-      user => user.email.includes(loginSubstring)
+      user => user.email.includes(emailSubstring)
     ).slice(0, limit)
   }
 
-  removeUser(userId: number) {
-    this.db.removeUserQuery(userId)
+  removeUser(id: number): IUser {
+    return this.db.removeUserQuery(id)
   }
 }
