@@ -1,4 +1,4 @@
-import usersMock from './usersMock.json'
+import usersMock from './users.mock.json'
 import { IUser } from './user.types'
 
 export class UserService {

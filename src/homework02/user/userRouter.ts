@@ -8,6 +8,10 @@ import {
   SuggestUserRequest,
   UpdateUserRequest,
 } from './user.types'
+import {
+  createUserValidation,
+  updateUserValidation,
+} from './user.validation'
 
 const userRouter = express.Router()
 
@@ -21,9 +25,11 @@ userRouter.get(API.USER.BY_ID, (req: GetUserRequest, res) => {
   res.status(200).json(user)
 })
 
-userRouter.post(API.USER.BASE, (req: AddUserRequest, res) => {
+userRouter.post(API.USER.BASE, async (req: AddUserRequest, res) => {
   const newUser = req.body.user
-  if (newUser) {
+
+  try {
+    await createUserValidation.validateAsync(newUser)
     const addedUser = userModel.addUser(newUser)
     res.status(201).json({
       data: {
@@ -31,14 +37,21 @@ userRouter.post(API.USER.BASE, (req: AddUserRequest, res) => {
       },
       message: 'New user was successfully created',
     })
-  } else {
-    res.status(400).json({ error: 'Bad request: new user was not provided' })
+  } catch (e) {
+    res.status(400).json({
+      error: {
+        message: e.message,
+        status: e.status
+      },
+    })
   }
 })
 
-userRouter.put(API.USER.BASE, (req: UpdateUserRequest, res) => {
+userRouter.put(API.USER.BASE, async (req: UpdateUserRequest, res) => {
   const providedUser = req.body.user
-  if (providedUser) {
+
+  try {
+    await updateUserValidation.validateAsync(providedUser)
     const updatedUser = userModel.updateUser(providedUser)
     res.status(200).json({
       data: {
@@ -46,8 +59,13 @@ userRouter.put(API.USER.BASE, (req: UpdateUserRequest, res) => {
       },
       message: 'User was successfully updated',
     })
-  } else {
-    res.status(400).json({ error: 'Bad request: updated user was not provided' })
+  } catch (e) {
+    res.status(400).json({
+      error: {
+        message: e.message,
+        status: e.status
+      },
+    })
   }
 })
 
