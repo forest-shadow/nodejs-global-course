@@ -27,7 +27,10 @@ module.exports = {
         }
       }
     ],
-    '@typescript-eslint/naming-convention': 'error',
+    '@typescript-eslint/naming-convention': [
+      'error',
+      { selector: 'default', format: ['camelCase', 'PascalCase', 'UPPER_CASE'] }
+    ],
     '@typescript-eslint/prefer-namespace-keyword': 'error',
     '@typescript-eslint/quotes': [
       'error',
@@ -45,6 +48,13 @@ module.exports = {
       'error',
       '1tbs'
     ],
+    'sort-imports': ['error', {
+      'ignoreCase': false,
+      'ignoreDeclarationSort': true,
+      'ignoreMemberSort': false,
+      'memberSyntaxSortOrder': ['none', 'all', 'multiple', 'single'],
+      'allowSeparatedGroups': false
+    }],
     'jsdoc/check-alignment': 'error',
     'jsdoc/check-indentation': 'error',
     'jsdoc/newline-after-description': 'error',
